@@ -7,6 +7,7 @@
 
 <script>
 import Emitter from "../../mixins/emitter.js";
+import { findComponentUp } from "../../utils/findComponent.js";
 export default {
   name: "Child",
   // 子组件直接注入
@@ -16,6 +17,8 @@ export default {
     add() {
       // 自己触发自定义事件
       this.$emit("test", "this is a test");
+      let parent = findComponentUp(this, "Parent");
+      console.log("msg", parent.msg.name);
     },
     showMessage(msg) {
       window.alert(msg);
